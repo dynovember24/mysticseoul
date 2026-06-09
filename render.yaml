@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mysticseoul
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: CURRENCY
+        value: krw
+      - key: PUBLIC_URL
+        value: https://www.mysticseoul.com
+      # Add these in the Render dashboard (Environment tab) when you're ready
+      # for real payments — leaving them unset keeps the site in demo mode:
+      #   STRIPE_SECRET_KEY
+      #   STRIPE_WEBHOOK_SECRET
