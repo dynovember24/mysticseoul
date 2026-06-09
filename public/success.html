@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed — Mystic Seoul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
+      <div class="nav-cta"><a class="btn btn-ghost" href="/">← Home</a></div>
+    </div>
+  </header>
+
+  <main class="result-wrap">
+    <div class="result-icon ok">✓</div>
+    <h1>Your seat is reserved</h1>
+    <p id="resultMsg">Thank you — your booking is confirmed. A confirmation email with the meeting location and full details is on its way.</p>
+    <div class="receipt" id="receipt" style="display:none"></div>
+    <a class="btn btn-buy" href="/booking.html">Book another experience</a>
+  </main>
+
+  <script>
+    const KRW = (n) => '₩' + Number(n).toLocaleString('en-US');
+    const params = new URLSearchParams(location.search);
+    const bookingId = params.get('booking');
+    if (bookingId) {
+      fetch('/api/booking/' + bookingId)
+        .then((r) => r.json())
+        .then((b) => {
+          if (!b || b.error) return;
+          const d = new Date(b.date + 'T00:00:00');
+          const day = d.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+          const [h] = b.slot.split(':').map(Number);
+          const time = (h % 12 || 12) + ':00 ' + (h >= 12 ? 'PM' : 'AM');
+          const r = document.getElementById('receipt');
+          r.style.display = 'block';
+          r.innerHTML = `
+            <div class="row"><span class="k">Experience</span><span class="v">${b.package}</span></div>
+            <div class="row"><span class="k">Date</span><span class="v">${day}</span></div>
+            <div class="row"><span class="k">Time</span><span class="v">${time}</span></div>
+            <div class="row"><span class="k">Guests</span><span class="v">${b.quantity}</span></div>
+            <div class="row"><span class="k">Total paid</span><span class="v">${KRW(b.amount)}</span></div>
+            <div class="row"><span class="k">Booking #</span><span class="v">MS-${String(b.id).padStart(4, '0')}</span></div>`;
+        })
+        .catch(() => {});
+    }
+    if (params.get('demo')) {
+      document.getElementById('resultMsg').innerHTML =
+        'This was a <b>demo booking</b> — no payment was taken — but the seat is now filled, so you can see availability update on the booking page.';
+    }
+  </script>
+</body>
+</html>

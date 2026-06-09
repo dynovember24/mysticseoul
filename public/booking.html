@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Experience — Mystic Seoul</title>
+  <meta name="description" content="Choose a date and time, pick your package, and reserve your seat for a guided Korean shaman experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="/#experiences">Experiences</a>
+        <a href="/#how">How it works</a>
+        <a href="/#stories">Stories</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/">← Home</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="booking-wrap">
+    <div class="container">
+      <div class="booking-head">
+        <h1>Book your experience</h1>
+        <p>Pick a date, choose a time, and reserve your seat. Sessions hold up to 8 guests.</p>
+      </div>
+
+      <div class="demo-banner" id="demoBanner">
+        <b>Demo mode.</b> Payments are simulated — no card is charged. A booking still fills the slot so you can see availability update. Add a Stripe key in <code>.env</code> to enable real payments.
+      </div>
+
+      <div class="booking-grid">
+        <!-- Calendar + slots -->
+        <div class="cal-card">
+          <div class="cal-head">
+            <h2 id="calMonth">Month</h2>
+            <div class="cal-nav">
+              <button id="prevMonth" aria-label="Previous month">‹</button>
+              <button id="nextMonth" aria-label="Next month">›</button>
+            </div>
+          </div>
+          <div class="cal-dow">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-legend">
+            <span><span class="d ok"></span> Seats available</span>
+            <span><span class="d no"></span> Fully booked</span>
+          </div>
+
+          <div class="slots">
+            <h3 id="slotsTitle">Select a date to see available times</h3>
+            <div class="slot-list" id="slotList"></div>
+          </div>
+        </div>
+
+        <!-- Summary / checkout -->
+        <aside class="summary-card">
+          <h2>Your booking</h2>
+
+          <div class="pkg-choice" id="pkgChoice"></div>
+
+          <div class="field">
+            <label>Guests</label>
+            <div class="qty">
+              <button id="qtyMinus" aria-label="Fewer guests">−</button>
+              <span class="qval" id="qtyVal">1</span>
+              <button id="qtyPlus" aria-label="More guests">+</button>
+              <span class="qty-max" id="qtyMax"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="custName">Full name</label>
+            <input type="text" id="custName" placeholder="Jane Traveler" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="custEmail">Email</label>
+            <input type="email" id="custEmail" placeholder="jane@email.com" autocomplete="email" />
+          </div>
+
+          <div class="summary-meta" id="summaryMeta">No date selected yet.</div>
+
+          <div class="summary-line"><span id="lineLabel">—</span><span id="lineCalc"></span></div>
+          <div class="summary-total">
+            <span class="lbl">Total</span>
+            <span class="amt" id="totalAmt">₩0</span>
+          </div>
+
+          <button class="btn btn-buy btn-block" id="payBtn" style="margin-top:18px" disabled>
+            <span class="lock">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Continue to payment
+            </span>
+          </button>
+          <div class="pay-error" id="payError"></div>
+          <p class="pay-note">Secure checkout. You'll receive an email confirmation with the meeting location and full details.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/booking.js"></script>
+</body>
+</html>
