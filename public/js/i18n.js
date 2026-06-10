@@ -58,7 +58,7 @@
     document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { applyAttr(el, 'placeholder', 'data-i18n-ph'); });
     document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { applyAttr(el, 'alt', 'data-i18n-alt'); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { applyAttr(el, 'aria-label', 'data-i18n-aria'); });
-    var _names={en:'English',ko:'한국어',zh:'中文',ja:'日本語',fr:'Français'};var _lc=document.getElementById('langCurrent');if(_lc)_lc.textContent=_names[state.lang]||'';
+    var _names={en:'English',ko:'한국어',zh:'中文',ja:'日本語',fr:'Français'};var _lc=document.getElementById('langCurrent');if(_lc)_lc.textContent=_names[state.lang]||'';var _lbl=document.getElementById('langToggleLabel');if(_lbl)_lbl.textContent=_names[state.lang]||'';document.querySelectorAll('.lang-opt').forEach(function(o){o.classList.toggle('active',o.getAttribute('data-lang')===state.lang);});
     document.documentElement.lang = state.lang;
     document.querySelectorAll('.lang-flag').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === state.lang);
@@ -84,8 +84,7 @@
     }
     state.lang = saved;
     document.addEventListener('click', function (e) {
-      var f = e.target.closest ? e.target.closest('.lang-flag') : null;
-      if (f) { e.preventDefault(); setLang(f.getAttribute('data-lang')); }
+      var _menu=document.getElementById('langMenu');var _b=e.target.closest&&e.target.closest('.lang-toggle-btn');var _o=e.target.closest&&e.target.closest('.lang-opt');if(_b){e.preventDefault();if(_menu){_menu.hidden=!_menu.hidden;_b.setAttribute('aria-expanded',_menu.hidden?'false':'true');}return;}if(_o){e.preventDefault();setLang(_o.getAttribute('data-lang'));if(_menu)_menu.hidden=true;var _tb=document.querySelector('.lang-toggle-btn');if(_tb)_tb.setAttribute('aria-expanded','false');return;}if(_menu&&!_menu.hidden&&!(e.target.closest&&e.target.closest('.lang-toggle'))){_menu.hidden=true;var _tb2=document.querySelector('.lang-toggle-btn');if(_tb2)_tb2.setAttribute('aria-expanded','false');}
     });
     apply();
   }
