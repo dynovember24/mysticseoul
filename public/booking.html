@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
@@ -49,7 +48,6 @@
       </div>
 
       <div class="booking-grid">
-        <!-- Calendar + slots -->
         <div class="cal-card">
           <div class="cal-head">
             <h2 id="calMonth">Month</h2>
@@ -58,27 +56,21 @@
               <button id="nextMonth" aria-label="Next month">›</button>
             </div>
           </div>
-          <div class="cal-dow">
-            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-          </div>
+          <div class="cal-dow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
           <div class="cal-grid" id="calGrid"></div>
           <div class="cal-legend">
             <span><span class="d ok"></span> <span data-i18n="booking.legendOk">Seats available</span></span>
             <span><span class="d no"></span> <span data-i18n="booking.legendNo">Fully booked</span></span>
           </div>
-
           <div class="slots">
             <h3 id="slotsTitle" data-i18n="booking.selectDate">Select a date to see available times</h3>
             <div class="slot-list" id="slotList"></div>
           </div>
         </div>
 
-        <!-- Summary / checkout -->
         <aside class="summary-card">
           <h2 data-i18n="booking.yourBooking">Your booking</h2>
-
           <div class="pkg-choice" id="pkgChoice"></div>
-
           <div class="field">
             <label data-i18n="booking.guests">Guests</label>
             <div class="qty">
@@ -88,10 +80,36 @@
               <span class="qty-max" id="qtyMax"></span>
             </div>
           </div>
-
           <div class="field">
             <label for="custName" data-i18n="booking.fullName">Full name</label>
             <input type="text" id="custName" placeholder="Jane Traveler" data-i18n-ph="booking.fullNamePh" autocomplete="name" />
           </div>
           <div class="field">
-            <label for="c
+            <label for="custEmail" data-i18n="booking.email">Email</label>
+            <input type="email" id="custEmail" placeholder="jane@email.com" data-i18n-ph="booking.emailPh" autocomplete="email" />
+          </div>
+          <div class="summary-meta" id="summaryMeta" data-i18n="booking.noDateTime">Select a date and time to continue.</div>
+          <div class="summary-line"><span id="lineLabel">—</span><span id="lineCalc"></span></div>
+          <div class="summary-total">
+            <span class="lbl" data-i18n="booking.total">Total</span>
+            <span class="amt" id="totalAmt">₩0</span>
+          </div>
+          <button class="btn btn-buy btn-block" id="payBtn" style="margin-top:18px" disabled>
+            <span class="lock">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span id="payBtnLabel" data-i18n="booking.continue">Continue to payment</span>
+            </span>
+          </button>
+          <div class="pay-error" id="payError"></div>
+          <p class="pay-note" data-i18n="booking.payNote">Secure checkout. You'll receive an email confirmation with the meeting location and full details.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/translations.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/booking.js"></script>
+</body>
+</html>
