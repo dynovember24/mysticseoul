@@ -58,6 +58,7 @@
     document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { applyAttr(el, 'placeholder', 'data-i18n-ph'); });
     document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { applyAttr(el, 'alt', 'data-i18n-alt'); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { applyAttr(el, 'aria-label', 'data-i18n-aria'); });
+    var _names={en:'English',ko:'한국어',zh:'中文',ja:'日本語',fr:'Français'};var _lc=document.getElementById('langCurrent');if(_lc)_lc.textContent=_names[state.lang]||'';
     document.documentElement.lang = state.lang;
     document.querySelectorAll('.lang-flag').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === state.lang);
