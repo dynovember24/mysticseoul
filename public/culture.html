@@ -16,13 +16,20 @@
     <div class="container nav-inner">
       <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
       <nav class="nav-links" id="navLinks">
-        <a href="/#experiences">Experiences</a>
-        <a href="/culture.html">Culture</a>
-        <a href="/#how">How it works</a>
-        <a href="/#faq">FAQ</a>
+        <a href="/#experiences" data-i18n="nav.experiences">Experiences</a>
+        <a href="/culture.html" data-i18n="nav.culture">Culture</a>
+        <a href="/#how" data-i18n="nav.how">How it works</a>
+        <a href="/#faq" data-i18n="nav.faq">FAQ</a>
       </nav>
       <div class="nav-cta">
-        <a class="btn btn-buy" href="/booking.html">Book now</a>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-flag" data-lang="en" aria-label="English"><img src="https://flagcdn.com/w40/gb.png" alt="English" /></button>
+          <button class="lang-flag" data-lang="ko" aria-label="한국어"><img src="https://flagcdn.com/w40/kr.png" alt="한국어" /></button>
+          <button class="lang-flag" data-lang="zh" aria-label="中文"><img src="https://flagcdn.com/w40/cn.png" alt="中文" /></button>
+          <button class="lang-flag" data-lang="fr" aria-label="Français"><img src="https://flagcdn.com/w40/fr.png" alt="Français" /></button>
+          <button class="lang-flag" data-lang="ja" aria-label="日本語"><img src="https://flagcdn.com/w40/jp.png" alt="日本語" /></button>
+        </div>
+        <a class="btn btn-buy" href="/booking.html" data-i18n="nav.book">Book now</a>
         <button class="nav-toggle" id="navToggle" aria-label="Menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
@@ -33,11 +40,11 @@
   <!-- Hero banner -->
   <div class="container">
     <div class="page-hero">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Korea-culture-gut-jeju.folk.nature.museum.jpg/1280px-Korea-culture-gut-jeju.folk.nature.museum.jpg" alt="A Korean gut ceremony with a shaman in ritual dress" loading="eager" onerror="this.style.display='none'" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Korea-culture-gut-jeju.folk.nature.museum.jpg/1280px-Korea-culture-gut-jeju.folk.nature.museum.jpg" alt="A Korean gut ceremony with a shaman in ritual dress" data-i18n-alt="culture.bannerAlt" loading="eager" onerror="this.style.display='none'" />
       <div class="ph-inner">
-        <span class="eyebrow">Culture &amp; modern history</span>
-        <h1>Korea's living spirit tradition</h1>
-        <p>Korean shamanism — <em>musok</em> — is one of the oldest threads in Korean culture, and one of the most alive today. Here's the context behind the experience.</p>
+        <span class="eyebrow" data-i18n="culture.heroEyebrow">Culture &amp; modern history</span>
+        <h1 data-i18n="culture.heroTitle">Korea's living spirit tradition</h1>
+        <p data-i18n="culture.heroLead">Korean shamanism — <em>musok</em> — is one of the oldest threads in Korean culture, and one of the most alive today. Here's the context behind the experience.</p>
       </div>
     </div>
   </div>
@@ -47,140 +54,92 @@
 
       <!-- 1. Overview -->
       <section class="block">
-        <div class="kicker">The basics</div>
-        <h2>What is Korean shamanism?</h2>
-        <p class="lead-quote">Older than Buddhism or Confucianism in Korea, <span class="em">musok</span> is the country's indigenous folk spirituality — a way of keeping the human and spirit worlds in conversation.</p>
-        <p>At its center is the <span class="em">mudang</span>, a shaman who serves as a bridge between people and the spirits. Mudang are predominantly women. Many are "called" to the role through an initiatory spirit-illness known as <em>sinbyeong</em>; others inherit it. Their work is intensely practical: to heal, to bless a household or business, to offer guidance, and to send off the dead with care.</p>
-        <p>The signature rite is the <span class="em">gut</span> (also written <em>kut</em>) — an immersive ceremony of music, drumming, dance, vivid costume, and spirit communication that can last hours. By most estimates more than <span class="em">200,000 mudang</span> practice in South Korea today, and counts that include fortune-tellers run far higher.</p>
+        <div class="kicker" data-i18n="culture.s1kicker">The basics</div>
+        <h2 data-i18n="culture.s1title">What is Korean shamanism?</h2>
+        <p class="lead-quote" data-i18n="culture.s1lead">Older than Buddhism or Confucianism in Korea, <span class="em">musok</span> is the country's indigenous folk spirituality — a way of keeping the human and spirit worlds in conversation.</p>
+        <p data-i18n="culture.s1p1">At its center is the <span class="em">mudang</span>, a shaman who serves as a bridge between people and the spirits. Mudang are predominantly women. Many are "called" to the role through an initiatory spirit-illness known as <em>sinbyeong</em>; others inherit it. Their work is intensely practical: to heal, to bless a household or business, to offer guidance, and to send off the dead with care.</p>
+        <p data-i18n="culture.s1p2">The signature rite is the <span class="em">gut</span> (also written <em>kut</em>) — an immersive ceremony of music, drumming, dance, vivid costume, and spirit communication that can last hours. By most estimates more than <span class="em">200,000 mudang</span> practice in South Korea today, and counts that include fortune-tellers run far higher.</p>
       </section>
 
       <!-- 2. Modern history + figures -->
       <section class="block">
-        <div class="kicker">A contested history</div>
-        <h2>Suppressed, then reclaimed</h2>
-        <p>For centuries, shamanism was pushed to the margins by whoever held power — only to endure, and recently to be embraced as cultural heritage.</p>
+        <div class="kicker" data-i18n="culture.s2kicker">A contested history</div>
+        <h2 data-i18n="culture.s2title">Suppressed, then reclaimed</h2>
+        <p data-i18n="culture.s2intro">For centuries, shamanism was pushed to the margins by whoever held power — only to endure, and recently to be embraced as cultural heritage.</p>
 
         <div class="timeline">
-          <div class="tl-item"><div class="yr">1392–1897</div><div class="txt"><b>Joseon dynasty.</b> Confucian elites taxed and legally restricted mudang, regarding their rites as improper to a Confucian social order.</div></div>
-          <div class="tl-item"><div class="yr">1910–1945</div><div class="txt"><b>Japanese colonial rule.</b> Authorities labeled shamanism a "primitive custom" and repressed it — in part because it was seen as a deeply native marker of Korean identity.</div></div>
-          <div class="tl-item"><div class="yr">1970s</div><div class="txt"><b>The "Movement to Overthrow Superstition."</b> Under Park Chung-hee's Saemaul Undong (New Community Movement), police suppressed mudang; village shrines and sacred trees were destroyed and gut rites broken up.</div></div>
-          <div class="tl-item"><div class="yr">1970s onward</div><div class="txt"><b>Scholarly revival.</b> A wave of folklore studies reframed musok as Korea's ancient religion, and acceptance grew among educated Koreans.</div></div>
-          <div class="tl-item"><div class="yr">2009</div><div class="txt"><b>Recognized as heritage.</b> The government listed regional gut styles as intangible cultural heritage; major gut ceremonies are designated Important Intangible Cultural Properties.</div></div>
+          <div class="tl-item"><div class="yr" data-i18n="culture.tl1y">1392–1897</div><div class="txt" data-i18n="culture.tl1"><b>Joseon dynasty.</b> Confucian elites taxed and legally restricted mudang, regarding their rites as improper to a Confucian social order.</div></div>
+          <div class="tl-item"><div class="yr" data-i18n="culture.tl2y">1910–1945</div><div class="txt" data-i18n="culture.tl2"><b>Japanese colonial rule.</b> Authorities labeled shamanism a "primitive custom" and repressed it — in part because it was seen as a deeply native marker of Korean identity.</div></div>
+          <div class="tl-item"><div class="yr" data-i18n="culture.tl3y">1970s</div><div class="txt" data-i18n="culture.tl3"><b>The "Movement to Overthrow Superstition."</b> Under Park Chung-hee's Saemaul Undong (New Community Movement), police suppressed mudang; village shrines and sacred trees were destroyed and gut rites broken up.</div></div>
+          <div class="tl-item"><div class="yr" data-i18n="culture.tl4y">1970s onward</div><div class="txt" data-i18n="culture.tl4"><b>Scholarly revival.</b> A wave of folklore studies reframed musok as Korea's ancient religion, and acceptance grew among educated Koreans.</div></div>
+          <div class="tl-item"><div class="yr" data-i18n="culture.tl5y">2009</div><div class="txt" data-i18n="culture.tl5"><b>Recognized as heritage.</b> The government listed regional gut styles as intangible cultural heritage; major gut ceremonies are designated Important Intangible Cultural Properties.</div></div>
         </div>
 
-        <h3>The faces of the spirits</h3>
-        <p>Mudang work surrounded by <em>musindo</em> — painted portraits of the deities and spirits they serve. These examples, all in the public domain, hint at the visual world of a shrine.</p>
+        <h3 data-i18n="culture.figTitle">The faces of the spirits</h3>
+        <p data-i18n="culture.figIntro">Mudang work surrounded by <em>musindo</em> — painted portraits of the deities and spirits they serve. These examples, all in the public domain, hint at the visual world of a shrine.</p>
         <div class="figure-row">
           <figure class="figure">
-            <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Hwadeok-janggun%2C_Korean_fire_god.jpg" alt="Musindo painting of Hwadeok-janggun, a Korean fire god" loading="lazy" onerror="this.style.display='none'" /></div>
-            <figcaption><b>Hwadeok-janggun</b>, a fire general. 19th-century folk painting.</figcaption>
+            <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Hwadeok-janggun%2C_Korean_fire_god.jpg" alt="Musindo painting of Hwadeok-janggun, a Korean fire god" data-i18n-alt="culture.fig1alt" loading="lazy" onerror="this.style.display='none'" /></div>
+            <figcaption data-i18n="culture.fig1cap"><b>Hwadeok-janggun</b>, a fire general. 19th-century folk painting.</figcaption>
           </figure>
           <figure class="figure">
-            <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Korean_sun_and_moon_gods.png" alt="Musindo painting of Korean sun and moon gods" loading="lazy" onerror="this.style.display='none'" /></div>
-            <figcaption><b>Sun and moon gods.</b> 18th-century shrine painting.</figcaption>
+            <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Korean_sun_and_moon_gods.png" alt="Musindo painting of Korean sun and moon gods" data-i18n-alt="culture.fig2alt" loading="lazy" onerror="this.style.display='none'" /></div>
+            <figcaption data-i18n="culture.fig2cap"><b>Sun and moon gods.</b> 18th-century shrine painting.</figcaption>
           </figure>
           <figure class="figure">
-            <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Encykorea-%EA%B5%AD%EC%82%AC%EB%8B%B9_%EB%AC%B4%EC%8B%A0%EB%8F%84_%EC%A4%91_%EC%B0%BD%EB%B6%80%EC%94%A8.jpg/960px-Encykorea-%EA%B5%AD%EC%82%AC%EB%8B%B9_%EB%AC%B4%EC%8B%A0%EB%8F%84_%EC%A4%91_%EC%B0%BD%EB%B6%80%EC%94%A8.jpg" alt="Musindo painting of the Changbu deity from Guksadang shrine" loading="lazy" onerror="this.style.display='none'" /></div>
-            <figcaption><b>Changbu</b>, a guardian deity, from Seoul's Guksadang shrine.</figcaption>
+            <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Encykorea-%EA%B5%AD%EC%82%AC%EB%8B%B9_%EB%AC%B4%EC%8B%A0%EB%8F%84_%EC%A4%91_%EC%B0%BD%EB%B6%80%EC%94%A8.jpg/960px-Encykorea-%EA%B5%AD%EC%82%AC%EB%8B%B9_%EB%AC%B4%EC%8B%A0%EB%8F%84_%EC%A4%91_%EC%B0%BD%EB%B6%80%EC%94%A8.jpg" alt="Musindo painting of the Changbu deity from Guksadang shrine" data-i18n-alt="culture.fig3alt" loading="lazy" onerror="this.style.display='none'" /></div>
+            <figcaption data-i18n="culture.fig3cap"><b>Changbu</b>, a guardian deity, from Seoul's Guksadang shrine.</figcaption>
           </figure>
         </div>
       </section>
 
       <!-- 3. Politics -->
       <section class="block">
-        <div class="kicker">Shamanism &amp; power</div>
-        <h2>An uneasy place near politics</h2>
-        <p>One of the recurring themes in Korea's relationship with shamanism is paradox: officially marginalized, yet never far from public life — and, at times, from the corridors of power.</p>
-        <p>The most widely reported modern episode came in 2016, around then-President <span class="em">Park Geun-hye</span> and her longtime confidante <span class="em">Choi Soon-sil</span>. International and Korean media extensively covered Choi's unusual influence and her family's quasi-religious background — her late father, Choi Tae-min, was a figure some in the press described as a "shaman." Choi was later convicted of corruption and abuse of power, and Park was impeached and removed from office in 2017.</p>
-        <p>Notably, professional shamans largely <span class="em">distanced themselves</span> from the affair, with many feeling it unfairly tarnished their tradition — as one put it to reporters, the scandal "gives shamans a bad name." More broadly, journalists have reported that the clientele of well-known shamans has, over the years, included senior politicians as well as business and entertainment figures.</p>
-        <div class="note-box">
+        <div class="kicker" data-i18n="culture.s3kicker">Shamanism &amp; power</div>
+        <h2 data-i18n="culture.s3title">An uneasy place near politics</h2>
+        <p data-i18n="culture.s3p1">One of the recurring themes in Korea's relationship with shamanism is paradox: officially marginalized, yet never far from public life — and, at times, from the corridors of power.</p>
+        <p data-i18n="culture.s3p2">The most widely reported modern episode came in 2016, around then-President <span class="em">Park Geun-hye</span> and her longtime confidante <span class="em">Choi Soon-sil</span>. International and Korean media extensively covered Choi's unusual influence and her family's quasi-religious background — her late father, Choi Tae-min, was a figure some in the press described as a "shaman." Choi was later convicted of corruption and abuse of power, and Park was impeached and removed from office in 2017.</p>
+        <p data-i18n="culture.s3p3">Notably, professional shamans largely <span class="em">distanced themselves</span> from the affair, with many feeling it unfairly tarnished their tradition — as one put it to reporters, the scandal "gives shamans a bad name." More broadly, journalists have reported that the clientele of well-known shamans has, over the years, included senior politicians as well as business and entertainment figures.</p>
+        <div class="note-box" data-i18n="culture.s3note">
           <b>A note on this section.</b> The above reflects events widely reported in major international and Korean media, presented here for cultural context. Mystic Seoul takes no political position, does not endorse claims about any individual, and presents this history in an educational spirit.
         </div>
       </section>
 
       <!-- 4. Everyday life + stats -->
       <section class="block">
-        <div class="kicker">A modern fixture</div>
-        <h2>Not a relic — a habit</h2>
-        <p>Far from fading away, fortune-telling and shamanic consultation are woven into contemporary Korean life. In one widely cited survey, about <span class="em">two in three</span> respondents said they visit a fortune teller at least once a year; other figures put it at roughly four in ten adults having gone at least once.</p>
+        <div class="kicker" data-i18n="culture.s4kicker">A modern fixture</div>
+        <h2 data-i18n="culture.s4title">Not a relic — a habit</h2>
+        <p data-i18n="culture.s4p1">Far from fading away, fortune-telling and shamanic consultation are woven into contemporary Korean life. In one widely cited survey, about <span class="em">two in three</span> respondents said they visit a fortune teller at least once a year; other figures put it at roughly four in ten adults having gone at least once.</p>
 
         <div class="stat-grid">
-          <div class="stat-card"><div class="big">200,000+</div><div class="lbl">Practicing mudang in South Korea (broader counts reach ~1 million)</div></div>
-          <div class="stat-card"><div class="big">~$3.7B</div><div class="lbl">Estimated annual value of the fortune-telling industry</div></div>
-          <div class="stat-card"><div class="big">2 in 3</div><div class="lbl">Surveyed Koreans who consult a fortune teller yearly</div></div>
-          <div class="stat-card"><div class="big">1 month+</div><div class="lbl">Typical wait for a sought-after, TV-famous shaman</div></div>
+          <div class="stat-card"><div class="big" data-i18n="culture.stat1big">200,000+</div><div class="lbl" data-i18n="culture.stat1lbl">Practicing mudang in South Korea (broader counts reach ~1 million)</div></div>
+          <div class="stat-card"><div class="big" data-i18n="culture.stat2big">~$3.7B</div><div class="lbl" data-i18n="culture.stat2lbl">Estimated annual value of the fortune-telling industry</div></div>
+          <div class="stat-card"><div class="big" data-i18n="culture.stat3big">2 in 3</div><div class="lbl" data-i18n="culture.stat3lbl">Surveyed Koreans who consult a fortune teller yearly</div></div>
+          <div class="stat-card"><div class="big" data-i18n="culture.stat4big">1 month+</div><div class="lbl" data-i18n="culture.stat4lbl">Typical wait for a sought-after, TV-famous shaman</div></div>
         </div>
 
-        <p>Who consults them? Businesspeople pick auspicious dates to launch new ventures. Couples check their <em>gunghap</em> (compatibility) before marriage. Students and parents seek reassurance before exams. And reporting on Seoul's affluent <span class="em">Gangnam</span> district — now a hub for upscale spiritual consulting — describes a clientele that can range from tech CEOs and K-pop idols to senior politicians. Demand for the most famous practitioners is high enough that appointments are routinely booked a month, sometimes two, in advance.</p>
+        <p data-i18n="culture.s4p2">Who consults them? Businesspeople pick auspicious dates to launch new ventures. Couples check their <em>gunghap</em> (compatibility) before marriage. Students and parents seek reassurance before exams. And reporting on Seoul's affluent <span class="em">Gangnam</span> district — now a hub for upscale spiritual consulting — describes a clientele that can range from tech CEOs and K-pop idols to senior politicians. Demand for the most famous practitioners is high enough that appointments are routinely booked a month, sometimes two, in advance.</p>
 
-        <h3>What is <em>saju</em>?</h3>
-        <p>Many readings are based on <span class="em">saju</span>, the "Four Pillars" — your birth year, month, day, and hour. Using the principles of yin-yang and the five elements, a reader interprets your character and the shape of your fortune: career, relationships, and timing. It's the gentle, conversational end of a spectrum that reaches all the way to the full intensity of a gut.</p>
+        <h3 data-i18n="culture.sajuTitle">What is <em>saju</em>?</h3>
+        <p data-i18n="culture.sajuP">Many readings are based on <span class="em">saju</span>, the "Four Pillars" — your birth year, month, day, and hour. Using the principles of yin-yang and the five elements, a reader interprets your character and the shape of your fortune: career, relationships, and timing. It's the gentle, conversational end of a spectrum that reaches all the way to the full intensity of a gut.</p>
       </section>
 
       <!-- 5. CTA -->
       <section class="block">
         <div class="cta-band">
-          <h2>See it for yourself</h2>
-          <p>Mystic Seoul connects you — respectfully, and fully interpreted into English — to this living tradition.</p>
-          <a class="btn btn-buy" href="/booking.html">Book an experience</a>
+          <h2 data-i18n="culture.ctaTitle">See it for yourself</h2>
+          <p data-i18n="culture.ctaSub">Mystic Seoul connects you — respectfully, and fully interpreted into English — to this living tradition.</p>
+          <a class="btn btn-buy" href="/booking.html" data-i18n="culture.ctaBtn">Book an experience</a>
         </div>
       </section>
 
       <!-- Credits & sources -->
       <section class="block">
-        <div class="kicker">Credits &amp; further reading</div>
+        <div class="kicker" data-i18n="culture.credKicker">Credits &amp; further reading</div>
         <p class="sources">
-          <b>Image credits.</b><br />
+          <b data-i18n="culture.credImagesLead">Image credits.</b><br />
           Banner: gut ceremony, photo by karendotcom127, <a href="https://commons.wikimedia.org/wiki/File:Korea-culture-gut-jeju.folk.nature.museum.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY 2.0.<br />
           Musindo paintings (public domain): <a href="https://commons.wikimedia.org/wiki/File:Hwadeok-janggun,_Korean_fire_god.jpg" target="_blank" rel="noopener">Hwadeok-janggun</a>, <a href="https://commons.wikimedia.org/wiki/File:Korean_sun_and_moon_gods.png" target="_blank" rel="noopener">Sun and moon gods</a>, <a href="https://commons.wikimedia.org/wiki/File:Encykorea-%EA%B5%AD%EC%82%AC%EB%8B%B9_%EB%AC%B4%EC%8B%A0%EB%8F%84_%EC%A4%91_%EC%B0%BD%EB%B6%80%EC%94%A8.jpg" target="_blank" rel="noopener">Changbu of Guksadang</a> — Wikimedia Commons.
         </p>
         <p class="sources" style="margin-top:16px">
-          <b>Sources &amp; further reading.</b><br />
-          <a href="https://en.wikipedia.org/wiki/Korean_shamanism" target="_blank" rel="noopener">Korean shamanism — Wikipedia</a> ·
-          <a href="https://en.wikipedia.org/wiki/Anti-shamanism_movement_in_Korea" target="_blank" rel="noopener">Anti-shamanism movement in Korea — Wikipedia</a> ·
-          <a href="https://www.koreatimes.co.kr/southkorea/society/20241023/gangnam-emerges-as-hub-for-fortune-telling-spiritual-services" target="_blank" rel="noopener">"Gangnam emerges as hub for fortune-telling" — The Korea Times</a> ·
-          <a href="https://www.scmp.com/news/asia/east-asia/article/2121912/south-korea-has-1-million-shamans-and-fortune-tellers" target="_blank" rel="noopener">"South Korea has 1 million shamans and fortune tellers" — SCMP</a> ·
-          <a href="https://www.foreignaffairs.com/articles/south-korea/2016-12-01/south-koreas-shamanic-panic" target="_blank" rel="noopener">"South Korea's Shamanic Panic" — Foreign Affairs</a> ·
-          <a href="https://www.mdpi.com/2077-1444/14/2/189" target="_blank" rel="noopener">"Korean Shamans in the Global Spirituality Market" — Religions (MDPI)</a>
-        </p>
-      </section>
-
-    </article>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
-          <p class="blurb">Guided encounters with Korea's living shamanic tradition, for curious visitors from around the world.</p>
-        </div>
-        <div>
-          <h4>Experiences</h4>
-          <a href="/booking.html?package=standard">The Encounter</a>
-          <a href="/booking.html?package=premium">The Reading</a>
-          <a href="/booking.html">Book now</a>
-        </div>
-        <div>
-          <h4>Learn</h4>
-          <a href="/culture.html">Culture &amp; history</a>
-          <a href="/#how">How it works</a>
-          <a href="/#faq">FAQ</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:hello@mysticseoul.com">hello@mysticseoul.com</a>
-          <a href="#">Seoul, South Korea</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mystic Seoul. All rights reserved.</span>
-        <span>Presented as living cultural heritage · musok</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/js/main.js"></script>
-</body>
-</html>
+          <b data-i18n="culture.credSourcesLea

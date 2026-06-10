@@ -13,47 +13,68 @@
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
-      <div class="nav-cta"><a class="btn btn-ghost" href="/">← Home</a></div>
+      <div class="nav-cta">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-flag" data-lang="en" aria-label="English"><img src="https://flagcdn.com/w40/gb.png" alt="English" /></button>
+          <button class="lang-flag" data-lang="ko" aria-label="한국어"><img src="https://flagcdn.com/w40/kr.png" alt="한국어" /></button>
+          <button class="lang-flag" data-lang="zh" aria-label="中文"><img src="https://flagcdn.com/w40/cn.png" alt="中文" /></button>
+          <button class="lang-flag" data-lang="fr" aria-label="Français"><img src="https://flagcdn.com/w40/fr.png" alt="Français" /></button>
+          <button class="lang-flag" data-lang="ja" aria-label="日本語"><img src="https://flagcdn.com/w40/jp.png" alt="日本語" /></button>
+        </div>
+        <a class="btn btn-ghost" href="/" data-i18n="nav.home">← Home</a>
+      </div>
     </div>
   </header>
 
   <main class="result-wrap">
     <div class="result-icon ok">✓</div>
-    <h1>Your seat is reserved</h1>
-    <p id="resultMsg">Thank you — your booking is confirmed. A confirmation email with the meeting location and full details is on its way.</p>
+    <h1 data-i18n="success.title">Your seat is reserved</h1>
+    <p id="resultMsg" data-i18n="success.msg">Thank you — your booking is confirmed. A confirmation email with the meeting location and full details is on its way.</p>
     <div class="receipt" id="receipt" style="display:none"></div>
-    <a class="btn btn-buy" href="/booking.html">Book another experience</a>
+    <a class="btn btn-buy" href="/booking.html" data-i18n="success.bookAnother">Book another experience</a>
   </main>
 
+  <script src="/js/translations.js"></script>
+  <script src="/js/i18n.js"></script>
   <script>
-    const KRW = (n) => '₩' + Number(n).toLocaleString('en-US');
-    const params = new URLSearchParams(location.search);
-    const bookingId = params.get('booking');
+    var KRW = function (n) { return '₩' + Number(n).toLocaleString('en-US'); };
+    var params = new URLSearchParams(location.search);
+    var bookingId = params.get('booking');
+    var bookingData = null;
+
+    function loc() { return (window.MSi18n && window.MSi18n.locale()) || 'en-US'; }
+    function tr(k) { return (window.t ? window.t(k) : k); }
+
+    function renderReceipt() {
+      if (!bookingData) return;
+      var b = bookingData;
+      var d = new Date(b.date + 'T00:00:00');
+      var day = d.toLocaleDateString(loc(), { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+      var hm = b.slot.split(':').map(Number);
+      var td = new Date(); td.setHours(hm[0], hm[1], 0, 0);
+      var time = td.toLocaleTimeString(loc(), { hour: 'numeric', minute: '2-digit' });
+      var r = document.getElementById('receipt');
+      r.style.display = 'block';
+      r.innerHTML =
+        '<div class="row"><span class="k">' + tr('success.rExperience') + '</span><span class="v">' + b.package + '</span></div>' +
+        '<div class="row"><span class="k">' + tr('success.rDate') + '</span><span class="v">' + day + '</span></div>' +
+        '<div class="row"><span class="k">' + tr('success.rTime') + '</span><span class="v">' + time + '</span></div>' +
+        '<div class="row"><span class="k">' + tr('success.rGuests') + '</span><span class="v">' + b.quantity + '</span></div>' +
+        '<div class="row"><span class="k">' + tr('success.rTotal') + '</span><span class="v">' + KRW(b.amount) + '</span></div>' +
+        '<div class="row"><span class="k">' + tr('success.rBooking') + '</span><span class="v">MS-' + String(b.id).padStart(4, '0') + '</span></div>';
+    }
+
     if (bookingId) {
       fetch('/api/booking/' + bookingId)
-        .then((r) => r.json())
-        .then((b) => {
-          if (!b || b.error) return;
-          const d = new Date(b.date + 'T00:00:00');
-          const day = d.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
-          const [h] = b.slot.split(':').map(Number);
-          const time = (h % 12 || 12) + ':00 ' + (h >= 12 ? 'PM' : 'AM');
-          const r = document.getElementById('receipt');
-          r.style.display = 'block';
-          r.innerHTML = `
-            <div class="row"><span class="k">Experience</span><span class="v">${b.package}</span></div>
-            <div class="row"><span class="k">Date</span><span class="v">${day}</span></div>
-            <div class="row"><span class="k">Time</span><span class="v">${time}</span></div>
-            <div class="row"><span class="k">Guests</span><span class="v">${b.quantity}</span></div>
-            <div class="row"><span class="k">Total paid</span><span class="v">${KRW(b.amount)}</span></div>
-            <div class="row"><span class="k">Booking #</span><span class="v">MS-${String(b.id).padStart(4, '0')}</span></div>`;
-        })
-        .catch(() => {});
+        .then(function (r) { return r.json(); })
+        .then(function (b) { if (b && !b.error) { bookingData = b; renderReceipt(); } })
+        .catch(function () {});
     }
     if (params.get('demo')) {
-      document.getElementById('resultMsg').innerHTML =
-        'This was a <b>demo booking</b> — no payment was taken — but the seat is now filled, so you can see availability update on the booking page.';
+      document.getElementById('resultMsg').setAttribute('data-i18n', 'success.demoMsg');
+      document.getElementById('resultMsg').innerHTML = tr('success.demoMsg');
     }
+    document.addEventListener('i18n:changed', renderReceipt);
   </script>
 </body>
 </html>

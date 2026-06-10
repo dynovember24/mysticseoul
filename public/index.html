@@ -17,14 +17,21 @@
     <div class="container nav-inner">
       <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
       <nav class="nav-links" id="navLinks">
-        <a href="#experiences">Experiences</a>
-        <a href="/culture.html">Culture</a>
-        <a href="#how">How it works</a>
-        <a href="#stories">Stories</a>
-        <a href="#faq">FAQ</a>
+        <a href="#experiences" data-i18n="nav.experiences">Experiences</a>
+        <a href="/culture.html" data-i18n="nav.culture">Culture</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#stories" data-i18n="nav.stories">Stories</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
       </nav>
       <div class="nav-cta">
-        <a class="btn btn-buy" href="/booking.html">Book now</a>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-flag" data-lang="en" aria-label="English"><img src="https://flagcdn.com/w40/gb.png" alt="English" /></button>
+          <button class="lang-flag" data-lang="ko" aria-label="한국어"><img src="https://flagcdn.com/w40/kr.png" alt="한국어" /></button>
+          <button class="lang-flag" data-lang="zh" aria-label="中文"><img src="https://flagcdn.com/w40/cn.png" alt="中文" /></button>
+          <button class="lang-flag" data-lang="fr" aria-label="Français"><img src="https://flagcdn.com/w40/fr.png" alt="Français" /></button>
+          <button class="lang-flag" data-lang="ja" aria-label="日本語"><img src="https://flagcdn.com/w40/jp.png" alt="日本語" /></button>
+        </div>
+        <a class="btn btn-buy" href="/booking.html" data-i18n="nav.book">Book now</a>
         <button class="nav-toggle" id="navToggle" aria-label="Menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
@@ -36,22 +43,22 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow">A doorway to Korea's spirit world</span>
-        <h1>Meet a Korean shaman. Cross the veil with a guide.</h1>
-        <p class="lead">Authentic, respectfully guided encounters with practicing <em>mudang</em> — witness real rituals, hear the history behind them, or receive your own personal fortune reading.</p>
+        <span class="eyebrow" data-i18n="home.eyebrow">A doorway to Korea's spirit world</span>
+        <h1 data-i18n="home.title">Meet a Korean shaman. Cross the veil with a guide.</h1>
+        <p class="lead" data-i18n="home.lead">Authentic, respectfully guided encounters with practicing <em>mudang</em> — witness real rituals, hear the history behind them, or receive your own personal fortune reading.</p>
         <div class="hero-actions">
-          <a class="btn btn-buy" href="/booking.html">Book an experience</a>
-          <a class="btn btn-secondary" href="#experiences">Explore rituals</a>
+          <a class="btn btn-buy" href="/booking.html" data-i18n="home.bookExp">Book an experience</a>
+          <a class="btn btn-secondary" href="#experiences" data-i18n="home.explore">Explore rituals</a>
         </div>
         <div class="trust-row">
-          <div class="stat"><div class="n">4.9★</div><div class="l">Average rating</div></div>
-          <div class="stat"><div class="n">1,200+</div><div class="l">Guests welcomed</div></div>
-          <div class="stat"><div class="n">EN</div><div class="l">Fully interpreted</div></div>
+          <div class="stat"><div class="n">4.9★</div><div class="l" data-i18n="home.trust.ratingLbl">Average rating</div></div>
+          <div class="stat"><div class="n">1,200+</div><div class="l" data-i18n="home.trust.guestsLbl">Guests welcomed</div></div>
+          <div class="stat"><div class="n">EN</div><div class="l" data-i18n="home.trust.enLbl">Fully interpreted</div></div>
         </div>
       </div>
       <div class="hero-media">
-        <img src="https://images.unsplash.com/photo-1601972599720-36938d4ecd31?auto=format&fit=crop&w=900&q=80" alt="A traditional Korean ritual setting" onerror="this.style.display='none'" />
-        <div class="media-fallback"><span>Hanok candlelight · ritual drums · the moment before a reading begins</span></div>
+        <img src="https://images.unsplash.com/photo-1601972599720-36938d4ecd31?auto=format&fit=crop&w=900&q=80" alt="A traditional Korean ritual setting" data-i18n-alt="home.heroAlt" onerror="this.style.display='none'" />
+        <div class="media-fallback"><span data-i18n="home.heroCaption">Hanok candlelight · ritual drums · the moment before a reading begins</span></div>
       </div>
     </div>
   </section>
@@ -60,25 +67,25 @@
   <section id="how" class="section surface-band">
     <div class="container">
       <div class="section-head center">
-        <div class="kicker">How it works</div>
-        <h2>From curiosity to encounter in three steps</h2>
-        <p>We handle the introductions, the interpretation, and the etiquette — so you can simply be present.</p>
+        <div class="kicker" data-i18n="home.how.kicker">How it works</div>
+        <h2 data-i18n="home.how.title">From curiosity to encounter in three steps</h2>
+        <p data-i18n="home.how.sub">We handle the introductions, the interpretation, and the etiquette — so you can simply be present.</p>
       </div>
       <div class="steps">
         <div class="step">
           <div class="num">1</div>
-          <h3>Choose your experience</h3>
-          <p>Pick The Encounter to observe and learn, or The Reading for your own personal fortune. Select a date and time.</p>
+          <h3 data-i18n="home.how.s1t">Choose your experience</h3>
+          <p data-i18n="home.how.s1p">Pick The Encounter to observe and learn, or The Reading for your own personal fortune. Select a date and time.</p>
         </div>
         <div class="step">
           <div class="num">2</div>
-          <h3>Reserve your seat</h3>
-          <p>Each session is an intimate group of up to eight guests. Book and pay securely online — confirmation is instant.</p>
+          <h3 data-i18n="home.how.s2t">Reserve your seat</h3>
+          <p data-i18n="home.how.s2p">Each session is an intimate group of up to eight guests. Book and pay securely online — confirmation is instant.</p>
         </div>
         <div class="step">
           <div class="num">3</div>
-          <h3>Meet your shaman</h3>
-          <p>Arrive at the appointed place. Your interpreter guides you through every act, every meaning, every question.</p>
+          <h3 data-i18n="home.how.s3t">Meet your shaman</h3>
+          <p data-i18n="home.how.s3p">Arrive at the appointed place. Your interpreter guides you through every act, every meaning, every question.</p>
         </div>
       </div>
     </div>
@@ -88,48 +95,48 @@
   <section id="experiences" class="section">
     <div class="container">
       <div class="section-head center">
-        <div class="kicker">Experiences</div>
-        <h2>Two ways to step inside</h2>
-        <p>Both are led by a practicing shaman and fully interpreted into English.</p>
+        <div class="kicker" data-i18n="home.exp.kicker">Experiences</div>
+        <h2 data-i18n="home.exp.title">Two ways to step inside</h2>
+        <p data-i18n="home.exp.sub">Both are led by a practicing shaman and fully interpreted into English.</p>
       </div>
-      <div class="packages" id="packages"><!-- injected by JS, with static fallback below -->
+      <div class="packages">
         <article class="pkg">
-          <div class="pkg-badge">Most popular</div>
-          <h3>The Encounter</h3>
-          <p class="tagline">Witness, learn, and ask</p>
-          <div class="price"><span class="amt">₩105,000</span><span class="per">/ person</span></div>
-          <div class="price-usd">≈ $76 USD</div>
-          <p class="desc">A guided introduction to Korean shamanism. Observe a mudang at work, hear each ritual act explained, learn the history and meaning behind it, and ask anything in an open Q&amp;A.</p>
+          <div class="pkg-badge" data-i18n="pkg.standard.badge">Most popular</div>
+          <h3 data-i18n="pkg.standard.name">The Encounter</h3>
+          <p class="tagline" data-i18n="pkg.standard.tagline">Witness, learn, and ask</p>
+          <div class="price"><span class="amt">₩105,000</span><span class="per" data-i18n="pkg.perPerson">/ person</span></div>
+          <div class="price-usd" data-i18n="pkg.standard.usd">≈ $76 USD</div>
+          <p class="desc" data-i18n="pkg.standard.desc">A guided introduction to Korean shamanism. Observe a mudang at work, hear each ritual act explained, learn the history and meaning behind it, and ask anything in an open Q&amp;A.</p>
           <ul>
-            <li><span class="tick">✓</span> Live observation of ritual practice</li>
-            <li><span class="tick">✓</span> Step-by-step explanation of each act</li>
-            <li><span class="tick">✓</span> History and cultural context</li>
-            <li><span class="tick">✓</span> Open Q&amp;A with an interpreter</li>
-            <li><span class="tick">✓</span> Small group (max 8 guests)</li>
-            <li><span class="tick">✓</span> About 90 minutes</li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.standard.f1">Live observation of ritual practice</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.standard.f2">Step-by-step explanation of each act</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.standard.f3">History and cultural context</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.standard.f4">Open Q&amp;A with an interpreter</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.standard.f5">Small group (max 8 guests)</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.standard.f6">About 90 minutes</span></li>
           </ul>
-          <div class="pkg-foot"><a class="btn btn-primary btn-block" href="/booking.html?package=standard">Book The Encounter</a></div>
+          <div class="pkg-foot"><a class="btn btn-primary btn-block" href="/booking.html?package=standard" data-i18n="pkg.standard.cta">Book The Encounter</a></div>
         </article>
 
         <article class="pkg featured">
-          <div class="pkg-badge">Premium</div>
-          <h3>The Reading</h3>
-          <p class="tagline">Your own personal fortune</p>
-          <div class="price"><span class="amt">₩165,000</span><span class="per">/ person</span></div>
-          <div class="price-usd">≈ $120 USD</div>
-          <p class="desc">Everything in The Encounter, plus a genuine personal fortune reading (jeom) performed for you by the shaman — your questions, your year ahead, interpreted and translated.</p>
+          <div class="pkg-badge" data-i18n="pkg.premium.badge">Premium</div>
+          <h3 data-i18n="pkg.premium.name">The Reading</h3>
+          <p class="tagline" data-i18n="pkg.premium.tagline">Your own personal fortune</p>
+          <div class="price"><span class="amt">₩165,000</span><span class="per" data-i18n="pkg.perPerson">/ person</span></div>
+          <div class="price-usd" data-i18n="pkg.premium.usd">≈ $120 USD</div>
+          <p class="desc" data-i18n="pkg.premium.desc">Everything in The Encounter, plus a genuine personal fortune reading (jeom) performed for you by the shaman — your questions, your year ahead, interpreted and translated.</p>
           <ul>
-            <li><span class="tick">✓</span> Everything in The Encounter</li>
-            <li><span class="tick">✓</span> A real personal fortune reading (jeom)</li>
-            <li><span class="tick">✓</span> Private interpretation of your reading</li>
-            <li><span class="tick">✓</span> Keepsake written summary</li>
-            <li><span class="tick">✓</span> Priority seating</li>
-            <li><span class="tick">✓</span> About 2 hours</li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.premium.f1">Everything in The Encounter</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.premium.f2">A real personal fortune reading (jeom)</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.premium.f3">Private interpretation of your reading</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.premium.f4">Keepsake written summary</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.premium.f5">Priority seating</span></li>
+            <li><span class="tick">✓</span> <span data-i18n="pkg.premium.f6">About 2 hours</span></li>
           </ul>
-          <div class="pkg-foot"><a class="btn btn-buy btn-block" href="/booking.html?package=premium">Book The Reading</a></div>
+          <div class="pkg-foot"><a class="btn btn-buy btn-block" href="/booking.html?package=premium" data-i18n="pkg.premium.cta">Book The Reading</a></div>
         </article>
       </div>
-      <p class="disclaimer">Mystic Seoul presents Korean shamanism (musok) as living cultural heritage. Experiences are offered for cultural and entertainment purposes and are conducted with the full consent and participation of practicing shamans.</p>
+      <p class="disclaimer" data-i18n="home.disclaimer">Mystic Seoul presents Korean shamanism (musok) as living cultural heritage. Experiences are offered for cultural and entertainment purposes and are conducted with the full consent and participation of practicing shamans.</p>
     </div>
   </section>
 
@@ -137,24 +144,24 @@
   <section id="stories" class="section surface-band">
     <div class="container">
       <div class="section-head center">
-        <div class="kicker">Guest stories</div>
-        <h2>What visitors take home</h2>
+        <div class="kicker" data-i18n="home.stories.kicker">Guest stories</div>
+        <h2 data-i18n="home.stories.title">What visitors take home</h2>
       </div>
       <div class="cards-3">
         <div class="quote-card">
           <div class="stars">★★★★★</div>
-          <p>"I've travelled all over Asia and nothing came close to this. The interpreter made every gesture make sense. I left genuinely moved."</p>
-          <div class="who"><div class="avatar">SJ</div><div><div class="name">Sarah J.</div><div class="loc">London, UK</div></div></div>
+          <p data-i18n="t1.quote">"I've travelled all over Asia and nothing came close to this. The interpreter made every gesture make sense. I left genuinely moved."</p>
+          <div class="who"><div class="avatar">SJ</div><div><div class="name" data-i18n="t1.name">Sarah J.</div><div class="loc" data-i18n="t1.loc">London, UK</div></div></div>
         </div>
         <div class="quote-card">
           <div class="stars">★★★★★</div>
-          <p>"My personal reading was uncannily specific. Whether you 'believe' or not, it's a window into a side of Korea most tourists never see."</p>
-          <div class="who"><div class="avatar">MK</div><div><div class="name">Michael K.</div><div class="loc">Toronto, Canada</div></div></div>
+          <p data-i18n="t2.quote">"My personal reading was uncannily specific. Whether you 'believe' or not, it's a window into a side of Korea most tourists never see."</p>
+          <div class="who"><div class="avatar">MK</div><div><div class="name" data-i18n="t2.name">Michael K.</div><div class="loc" data-i18n="t2.loc">Toronto, Canada</div></div></div>
         </div>
         <div class="quote-card">
           <div class="stars">★★★★★</div>
-          <p>"Respectful, never touristy. The shaman was warm and the history made it unforgettable. Highly recommend the premium reading."</p>
-          <div class="who"><div class="avatar">AL</div><div><div class="name">Anna L.</div><div class="loc">Berlin, Germany</div></div></div>
+          <p data-i18n="t3.quote">"Respectful, never touristy. The shaman was warm and the history made it unforgettable. Highly recommend the premium reading."</p>
+          <div class="who"><div class="avatar">AL</div><div><div class="name" data-i18n="t3.name">Anna L.</div><div class="loc" data-i18n="t3.loc">Berlin, Germany</div></div></div>
         </div>
       </div>
     </div>
@@ -164,83 +171,18 @@
   <section id="faq" class="section">
     <div class="container">
       <div class="section-head center">
-        <div class="kicker">Good to know</div>
-        <h2>Frequently asked questions</h2>
+        <div class="kicker" data-i18n="home.faq.kicker">Good to know</div>
+        <h2 data-i18n="home.faq.title">Frequently asked questions</h2>
       </div>
       <div class="faq">
         <details class="faq-item">
-          <summary>Is this a real shaman, or a performance for tourists? <span class="chev">+</span></summary>
-          <div class="ans">Every session is led by a practicing mudang who genuinely works within Korea's shamanic tradition. We are a respectful bridge — not a staged show.</div>
+          <summary><span data-i18n="faq.q1">Is this a real shaman, or a performance for tourists?</span> <span class="chev">+</span></summary>
+          <div class="ans" data-i18n="faq.a1">Every session is led by a practicing mudang who genuinely works within Korea's shamanic tradition. We are a respectful bridge — not a staged show.</div>
         </details>
         <details class="faq-item">
-          <summary>Do I need to speak Korean? <span class="chev">+</span></summary>
-          <div class="ans">No. Every experience is fully interpreted into English. Your guide explains each act and translates the shaman's words and your reading in real time.</div>
+          <summary><span data-i18n="faq.q2">Do I need to speak Korean?</span> <span class="chev">+</span></summary>
+          <div class="ans" data-i18n="faq.a2">No. Every experience is fully interpreted into English. Your guide explains each act and translates the shaman's words and your reading in real time.</div>
         </details>
         <details class="faq-item">
-          <summary>What's the difference between the two packages? <span class="chev">+</span></summary>
-          <div class="ans">The Encounter (₩105,000) is about witnessing and understanding — you observe, learn the history, and ask questions. The Reading (₩165,000) includes all of that plus your own personal fortune reading performed for you by the shaman.</div>
-        </details>
-        <details class="faq-item">
-          <summary>How many people are in a session? <span class="chev">+</span></summary>
-          <div class="ans">Sessions are intimate — a maximum of eight guests per time slot, so everyone has space to engage.</div>
-        </details>
-        <details class="faq-item">
-          <summary>What should I wear or bring? <span class="chev">+</span></summary>
-          <div class="ans">Comfortable, modest clothing is ideal. Just bring an open and respectful mind — we'll share full details and the meeting location after you book.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Can I cancel or reschedule? <span class="chev">+</span></summary>
-          <div class="ans">Yes — contact us at least 48 hours before your session for a full refund or free reschedule. Details are in your confirmation email.</div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section-tight">
-    <div class="container">
-      <div class="cta-band">
-        <h2>Ready to cross the veil?</h2>
-        <p>Intimate sessions fill quickly. Reserve your seat for an unforgettable encounter.</p>
-        <a class="btn btn-buy" href="/booking.html">Check availability</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a class="brand" href="/"><span class="dot">M</span> Mystic Seoul</a>
-          <p class="blurb">Guided encounters with Korea's living shamanic tradition, for curious visitors from around the world.</p>
-        </div>
-        <div>
-          <h4>Experiences</h4>
-          <a href="/booking.html?package=standard">The Encounter</a>
-          <a href="/booking.html?package=premium">The Reading</a>
-          <a href="/booking.html">Book now</a>
-        </div>
-        <div>
-          <h4>Company</h4>
-          <a href="/culture.html">Culture &amp; history</a>
-          <a href="#how">How it works</a>
-          <a href="#stories">Guest stories</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:hello@mysticseoul.com">hello@mysticseoul.com</a>
-          <a href="#">Seoul, South Korea</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mystic Seoul. All rights reserved.</span>
-        <span>Presented as living cultural heritage · musok</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/js/main.js"></script>
-</body>
-</html>
+          <summary><span data-i18n="faq.q3">What's the difference between the two packages?</span> <span class="chev">+</span></summary>
+          <div class="ans" data-i18n="faq.a3">The Encounter
