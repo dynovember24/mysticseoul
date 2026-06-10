@@ -1,30 +1,35 @@
-// ── Mystic Seoul booking page logic ──
+// ── Mystic Seoul booking page logic (i18n-aware) ──
+
+var I18N = window.MSi18n || { lang: 'en', locale: function () { return 'en-US'; } };
+var tr = window.t || function (k) { return k; };
 
 const KRW = (n) => '₩' + Number(n).toLocaleString('en-US');
 const fmtDate = (d) =>
-  d.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+  d.toLocaleDateString(I18N.locale(), { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
 const iso = (d) => {
   const z = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
   return z.toISOString().slice(0, 10);
 };
-const SLOT_LABELS = { '11:00': 'Late morning', '15:00': 'Afternoon' };
+const slotLabel = (s) => (s === '11:00' ? tr('slot.lateMorning') : tr('slot.afternoon'));
 const fmtSlot = (s) => {
-  const [h] = s.split(':').map(Number);
-  const ap = h >= 12 ? 'PM' : 'AM';
-  const h12 = h % 12 || 12;
-  return `${h12}:00 ${ap}`;
+  const [h, m] = s.split(':').map(Number);
+  const d = new Date(); d.setHours(h, m, 0, 0);
+  return d.toLocaleTimeString(I18N.locale(), { hour: 'numeric', minute: '2-digit' });
 };
+const pkgName = (id) => tr('pkg.' + id + '.name');
+const pkgTagline = (id) => tr('pkg.' + id + '.tagline');
 
 const state = {
   cfg: null,
   capacity: 8,
   packageId: 'standard',
   qty: 1,
-  view: new Date(),       // month being displayed
-  selectedDate: null,     // 'YYYY-MM-DD'
+  view: new Date(),
+  selectedDate: null,
   selectedSlot: null,
-  slotRemaining: {},      // remaining seats for selected date's slots
-  monthData: {}           // availability per day for current view
+  slotRemaining: {},
+  monthData: {},
+  busy: false
 };
 
 const el = (id) => document.getElementById(id);
@@ -32,9 +37,6 @@ const el = (id) => document.getElementById(id);
 // ---------- Boot ----------
 (async function init() {
   const params = new URLSearchParams(location.search);
-  if (params.get('cancelled')) {
-    // Returned from a cancelled Stripe checkout — nothing to do but stay put.
-  }
   const res = await fetch('/api/config');
   state.cfg = await res.json();
   state.capacity = state.cfg.capacity;
@@ -44,10 +46,28 @@ const el = (id) => document.getElementById(id);
   if (pre && state.cfg.packages[pre]) state.packageId = pre;
 
   renderPackages();
-  renderQtyMax();
   await loadMonth();
   bindControls();
   updateSummary();
+
+  // Re-render everything when the language changes.
+  document.addEventListener('i18n:changed', function () {
+    renderPackages();
+    el('calMonth').textContent = state.view.toLocaleDateString(I18N.locale(), { month: 'long', year: 'numeric' });
+    renderCalendar();
+    if (state.selectedDate && state.slotRemaining) {
+      const slots = state.cfg.slots.map((s) => ({
+        slot: s, capacity: state.capacity,
+        booked: state.capacity - (state.slotRemaining[s] || 0),
+        remaining: state.slotRemaining[s] || 0
+      }));
+      renderSlots(slots);
+    } else {
+      el('slotsTitle').textContent = tr('booking.selectDate');
+    }
+    if (!state.busy) el('payBtnLabel').textContent = tr('booking.continue');
+    updateSummary();
+  });
 })();
 
 // ---------- Packages ----------
@@ -57,12 +77,11 @@ function renderPackages() {
   Object.values(state.cfg.packages).forEach((p) => {
     const div = document.createElement('div');
     div.className = 'pkg-opt' + (p.id === state.packageId ? ' selected' : '');
-    div.innerHTML = `
-      <div>
-        <div class="po-name">${p.name}</div>
-        <div class="po-tag">${p.tagline}</div>
-      </div>
-      <div class="po-price">${KRW(p.price)}</div>`;
+    div.innerHTML =
+      '<div><div class="po-name"></div><div class="po-tag"></div></div><div class="po-price"></div>';
+    div.querySelector('.po-name').textContent = pkgName(p.id);
+    div.querySelector('.po-tag').textContent = pkgTagline(p.id);
+    div.querySelector('.po-price').textContent = KRW(p.price);
     div.addEventListener('click', () => {
       state.packageId = p.id;
       renderPackages();
@@ -76,7 +95,7 @@ function renderPackages() {
 async function loadMonth() {
   const y = state.view.getFullYear();
   const m = state.view.getMonth() + 1;
-  el('calMonth').textContent = state.view.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  el('calMonth').textContent = state.view.toLocaleDateString(I18N.locale(), { month: 'long', year: 'numeric' });
   try {
     const r = await fetch(`/api/availability/month?year=${y}&month=${m}`);
     const data = await r.json();
@@ -137,7 +156,7 @@ async function selectDate(dateStr) {
   state.selectedDate = dateStr;
   state.selectedSlot = null;
   renderCalendar();
-  el('slotsTitle').textContent = 'Loading times…';
+  el('slotsTitle').textContent = tr('booking.loadingTimes');
   const r = await fetch(`/api/availability?date=${dateStr}`);
   const data = await r.json();
   state.slotRemaining = {};
@@ -148,7 +167,7 @@ async function selectDate(dateStr) {
 
 function renderSlots(slots) {
   const d = new Date(state.selectedDate + 'T00:00:00');
-  el('slotsTitle').textContent = `Times for ${fmtDate(d)}`;
+  el('slotsTitle').textContent = tr('booking.timesFor', { date: fmtDate(d) });
   const list = el('slotList');
   list.innerHTML = '';
   slots.forEach((s) => {
@@ -157,22 +176,20 @@ function renderSlots(slots) {
     const btn = document.createElement('button');
     btn.className = 'slot' + (full ? ' full' : '') + (s.slot === state.selectedSlot ? ' selected' : '');
     btn.disabled = full;
-    btn.innerHTML = `
-      <div>
-        <div class="slot-time">${fmtSlot(s.slot)}</div>
-        <div class="slot-label">${SLOT_LABELS[s.slot] || ''}</div>
-      </div>
-      <div class="slot-avail">
-        <div class="slot-count">${full ? '<span class="full-text">Fully booked</span>' : `${s.booked}/${s.capacity} booked`}</div>
-        <div class="slot-bar"><i style="width:${pct}%"></i></div>
-      </div>`;
+    const countHtml = full
+      ? '<span class="full-text">' + tr('booking.fullyBooked') + '</span>'
+      : tr('booking.booked', { n: s.booked, cap: s.capacity });
+    btn.innerHTML =
+      '<div><div class="slot-time"></div><div class="slot-label"></div></div>' +
+      '<div class="slot-avail"><div class="slot-count">' + countHtml + '</div>' +
+      '<div class="slot-bar"><i style="width:' + pct + '%"></i></div></div>';
+    btn.querySelector('.slot-time').textContent = fmtSlot(s.slot);
+    btn.querySelector('.slot-label').textContent = slotLabel(s.slot);
     if (!full) {
       btn.addEventListener('click', () => {
         state.selectedSlot = s.slot;
-        // clamp quantity to remaining seats
         if (state.qty > s.remaining) state.qty = s.remaining;
         renderSlots(slots);
-        renderQty();
         updateSummary();
       });
     }
@@ -191,14 +208,11 @@ function renderQty() {
   el('qtyVal').textContent = state.qty;
   el('qtyMinus').disabled = state.qty <= 1;
   el('qtyPlus').disabled = state.qty >= maxQty();
-  renderQtyMax();
-}
-function renderQtyMax() {
   if (state.selectedSlot != null) {
     const rem = state.slotRemaining[state.selectedSlot] || 0;
-    el('qtyMax').textContent = `${rem} seat${rem === 1 ? '' : 's'} left`;
+    el('qtyMax').textContent = tr(rem === 1 ? 'booking.seatLeft' : 'booking.seatsLeft', { n: rem });
   } else {
-    el('qtyMax').textContent = `up to ${state.capacity}`;
+    el('qtyMax').textContent = tr('booking.upToCap', { cap: state.capacity });
   }
 }
 
@@ -206,18 +220,18 @@ function renderQtyMax() {
 function updateSummary() {
   const pkg = state.cfg.packages[state.packageId];
   const total = pkg.price * state.qty;
-  el('lineLabel').textContent = `${pkg.name} × ${state.qty}`;
+  el('lineLabel').textContent = pkgName(state.packageId) + ' × ' + state.qty;
   el('lineCalc').textContent = KRW(total);
   el('totalAmt').textContent = KRW(total);
 
   const meta = el('summaryMeta');
   if (state.selectedDate && state.selectedSlot) {
     const d = new Date(state.selectedDate + 'T00:00:00');
-    meta.innerHTML = `<b>${fmtDate(d)}</b> · <b>${fmtSlot(state.selectedSlot)}</b>`;
+    meta.innerHTML = '<b>' + fmtDate(d) + '</b> · <b>' + fmtSlot(state.selectedSlot) + '</b>';
   } else if (state.selectedDate) {
-    meta.textContent = 'Now choose a time slot.';
+    meta.textContent = tr('booking.chooseTime');
   } else {
-    meta.textContent = 'Select a date and time to continue.';
+    meta.textContent = tr('booking.noDateTime');
   }
 
   el('payBtn').disabled = !(state.selectedDate && state.selectedSlot &&
@@ -229,11 +243,9 @@ function updateSummary() {
 function bindControls() {
   el('qtyMinus').addEventListener('click', () => { if (state.qty > 1) { state.qty--; updateSummary(); } });
   el('qtyPlus').addEventListener('click', () => { if (state.qty < maxQty()) { state.qty++; updateSummary(); } });
-
   el('prevMonth').addEventListener('click', () => changeMonth(-1));
   el('nextMonth').addEventListener('click', () => changeMonth(1));
   updatePrevBtn();
-
   el('payBtn').addEventListener('click', startCheckout);
 }
 
@@ -256,16 +268,18 @@ function updatePrevBtn() {
 // ---------- Checkout ----------
 async function startCheckout() {
   const btn = el('payBtn');
+  const label = el('payBtnLabel');
   const errEl = el('payError');
   errEl.style.display = 'none';
 
   const name = el('custName').value.trim();
   const email = el('custEmail').value.trim();
-  if (!name) return showErr('Please enter your name.');
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showErr('Please enter a valid email.');
+  if (!name) return showErr(tr('err.enterName'));
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showErr(tr('err.validEmail'));
 
+  state.busy = true;
   btn.disabled = true;
-  btn.innerHTML = '<span class="lock">Processing…</span>';
+  label.textContent = tr('booking.processing');
 
   try {
     const r = await fetch('/api/create-checkout-session', {
@@ -282,22 +296,22 @@ async function startCheckout() {
     });
     const data = await r.json();
     if (!r.ok) {
-      showErr(data.error || 'Something went wrong. Please try again.');
+      showErr(data.error || tr('err.generic'));
       resetBtn();
       if (data.remaining != null) selectDate(state.selectedDate);
       return;
     }
-    window.location.href = data.url; // Stripe Checkout or demo success page
+    window.location.href = data.url;
   } catch (e) {
-    showErr('Network error. Please try again.');
+    showErr(tr('err.network'));
     resetBtn();
   }
 
   function resetBtn() {
+    state.busy = false;
     btn.disabled = false;
-    btn.innerHTML = '<span class="lock">Continue to payment</span>';
+    label.textContent = tr('booking.continue');
   }
-  function _noop() {}
 }
 
 function showErr(msg) {
